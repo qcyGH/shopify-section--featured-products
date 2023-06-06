@@ -1,14 +1,24 @@
 <div class="product-card">
   <a class="product-card__image" href="{{ product.url }}" target="_blank" rel="noopener noreferrer">
+    {%  comment  %}
+      This is card image
+    {% endcomment %}
     <img src="{{ product.featured_image | img_url: '443x357' }}">
   </a>
   <div class="product-card__content">
     <div class="content__title">
       <a class="content__title--link" href="{{ product.url }}" target="_blank" rel="noopener noreferrer">
+        {%  comment  %}
+          This is card title
+        {% endcomment %}
         {{ product.title }}
       </a>
     </div>
     <div class="content__buy">
+
+        {%  comment  %}
+          The form required for the add to cart function
+        {% endcomment %}
         {% form 'product', product, id: product_form_id %}
         <select class="form-select" name="id" style="display: none;">
           {% for variant in product.variants %}
@@ -26,7 +36,7 @@
             name="quantity"
             value="1"
             >
-          </quantity-input>
+        </quantity-input>
 
         <button type="submit" class="btn btn--buy">
           Add to cart - {{ product.price | money_without_trailing_zeros }}
