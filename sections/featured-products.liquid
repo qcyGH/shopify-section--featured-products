@@ -21,8 +21,8 @@ Presets:
 
 {{ 'container.css' | asset_url | stylesheet_tag }}
 
-<div class="container">
-  <section class="featured-products">
+<section class="featured-products" id="FeaturedProducts-{{ section.id }}" data-section="{{ section.id }}">
+  <div class="container">
 
     <div class="featured-products__title">
       <h3 class="featured-products__title-text">{{ section.settings.section_label }}</h3>
@@ -65,8 +65,8 @@ Presets:
       {% endfor %}
     </div>
 
-  </section>
-</div>
+  </div>
+</section>
 
 {% schema %}
 {
