@@ -2,16 +2,16 @@
     display: flex;
     flex-direction: column;
 
-    width: 443px;
+    width: 100vw;
     height: max-content;
 
     &__image {
-        width: 443px;
-        height: 357px;
+        width: 100vw;
+        height: auto;
 
         & img {
             width: 100%;
-            max-width: 443px;
+            max-width: 100vw;
         }
     }
 
@@ -21,6 +21,22 @@
 
         justify-content: center;
         align-items: center;
+    }
+}
+
+@media screen and (min-width: 443px) {
+    .product-card {
+        width: 443px;
+
+        &__image {
+            width: 443px;
+            height: 357px;
+
+            & img {
+                width: 100%;
+                max-width: 443px;
+            }
+        }
     }
 }
 
