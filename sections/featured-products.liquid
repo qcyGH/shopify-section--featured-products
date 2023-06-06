@@ -14,6 +14,16 @@ Presets:
 - Collection: all
 - Max product showing: 4
 
+let url = 'https://refactorr.myshopify.com/?section_id=template--19073435402584__50d3d6a2-cfc4-482f-bdf1-e94145abde97'
+
+fetch(url).then(response => response.text())
+    .then((responseText) => {
+        const new_html = new DOMParser()
+    .parseFromString(responseText, 'text/html')
+    .getElementById('FeaturedProducts').innerHTML
+    document.getElementById('FeaturedProducts').innerHTML = new_html;
+})
+
 {% endcomment %}
 
 {{ 'section-featured-products.css' | asset_url | stylesheet_tag }}
@@ -21,7 +31,7 @@ Presets:
 
 {{ 'container.css' | asset_url | stylesheet_tag }}
 
-<section class="featured-products" id="FeaturedProducts-{{ section.id }}" data-section="{{ section.id }}">
+<section class="featured-products" id="FeaturedProducts" data-section="{{ section.id }}">
   <div class="container">
 
     <div class="featured-products__title">
