@@ -29,9 +29,39 @@ Presets:
     </div>
     <div class="featured-products__wrapper">
       {% for product in section.settings.collection.products limit: section.settings.max_products_range %}
-        {% render 'product-card',
-          product: product,
-        %}
+
+        {% comment %}
+          This is a conditional check if the product is available, if not, it wont be shown
+        {% endcomment %}
+
+        {% unless product.available %}
+          {% break %}
+        {% endunless %}
+
+        {% assign is_in_cart = false %}
+
+        {% comment %}
+          This is a conditional check if the product is in the cart, if so, it wont be shown
+        {% endcomment %}
+        {% for item in cart.items %}
+          {% if item.product_id == product.id %}
+            {% assign is_in_cart = true %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+
+        {% unless is_in_cart %}
+          {% render 'product-card',
+            product: product,
+          %}
+        {% endunless %}
+
+
+        {% comment %} {% unless product contains cart.items %}
+          {% render 'product-card',
+            product: product,
+          %}
+        {% endunless %} {% endcomment %}
       {% endfor %}
     </div>
 
