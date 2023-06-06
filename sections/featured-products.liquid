@@ -1,0 +1,61 @@
+{{ 'section-featured-products.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-card.css' | asset_url | stylesheet_tag }}
+
+{{ 'container.css' | asset_url | stylesheet_tag }}
+
+<div class="container">
+  <section class="featured-products">
+
+    <div class="featured-products__title">
+      <h3 class="featured-products__title-text">{{ section.settings.section_label }}</h3>
+    </div>
+    <div class="featured-products__wrapper">
+      {% for product in section.settings.collection.products limit: section.settings.max_products_range %}
+        {% render 'product-card',
+          product: product,
+        %}
+      {% endfor %}
+    </div>
+
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Featured products",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "id": "section_label",
+      "default": "Featured products",
+      "type": "text",
+      "label": "Label text"
+    },
+    {
+    "type":"collection",
+    "id":"collection",
+    "label":"t:sections.featured-collection.settings.collection.label"
+    },
+    {
+      "id": "max_products_range",
+      "default": 4,
+      "type": "range",
+      "min": 4,
+      "max": 16,
+      "step": 4,
+      "label": "Max product range.",
+      "info": "Choice max products."
+    }
+  ],
+  "presets":[
+    {
+      "name":"Collection products",
+      "settings":{
+        "collection":"all",
+        "max_products_range":4
+      }
+    }
+  ]
+}
+{% endschema %}
