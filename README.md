@@ -1,4 +1,5 @@
 # Shopify: Section. Featured products
+![Preview](https://raw.githubusercontent.com/qcyGH/shopify-section--featured-products/main/preview.gif "Preview")
 
 ### Menu
 
